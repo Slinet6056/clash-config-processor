@@ -23,7 +23,6 @@ function overwriteRules(params) {
         "RULE-SET,anti-ad-white,DIRECT",
         "RULE-SET,private,DIRECT",
         "RULE-SET,anti-ad,广告拦截",
-        "RULE-SET,hagezi-normal,广告拦截",
         "RULE-SET,icloud,DIRECT",
         "RULE-SET,apple,DIRECT",
         "RULE-SET,openai,ChatGPT",
@@ -45,14 +44,6 @@ function overwriteRules(params) {
     };
     const acceleratePrefix = "https://gh.slinet.me/";
     const ruleProviders = {
-        reject: {
-            ...ruleProviderCommon,
-            behavior: "domain",
-            url: getAcceleratedUrl(
-                "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt",
-            ),
-            path: "./ruleset/reject.yaml",
-        },
         "anti-ad": {
             ...ruleProviderCommon,
             behavior: "domain",
@@ -68,15 +59,6 @@ function overwriteRules(params) {
                 "https://raw.githubusercontent.com/privacy-protection-tools/dead-horse/master/anti-ad-white-for-clash.yaml",
             ),
             path: "./ruleset/anti-ad-white.yaml",
-        },
-        "hagezi-normal": {
-            ...ruleProviderCommon,
-            behavior: "domain",
-            format: "text",
-            url: getAcceleratedUrl(
-                "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/multi.txt",
-            ),
-            path: "./ruleset/hagezi-normal.txt",
         },
         icloud: {
             ...ruleProviderCommon,
@@ -150,14 +132,6 @@ function overwriteRules(params) {
             ),
             path: "./ruleset/private.yaml",
         },
-        gfw: {
-            ...ruleProviderCommon,
-            behavior: "domain",
-            url: getAcceleratedUrl(
-                "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt",
-            ),
-            path: "./ruleset/gfw.yaml",
-        },
         greatfire: {
             ...ruleProviderCommon,
             behavior: "domain",
@@ -165,14 +139,6 @@ function overwriteRules(params) {
                 "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/greatfire.txt",
             ),
             path: "./ruleset/greatfire.yaml",
-        },
-        "tld-not-cn": {
-            ...ruleProviderCommon,
-            behavior: "domain",
-            url: getAcceleratedUrl(
-                "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/tld-not-cn.txt",
-            ),
-            path: "./ruleset/tld-not-cn.yaml",
         },
         telegramcidr: {
             ...ruleProviderCommon,
