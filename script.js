@@ -252,15 +252,6 @@ function overwriteProxyGroups(params) {
             proxies: allProxies,
         },
         {
-            name: "ALL-自动选择",
-            type: "url-test",
-            url: "http://www.gstatic.com/generate_204",
-            interval: 300,
-            tolerance: 50,
-            proxies: allProxies,
-            hidden: true,
-        },
-        {
             name: "Steam",
             type: "select",
             proxies: [
@@ -446,6 +437,15 @@ function overwriteProxyGroups(params) {
             icon: getAcceleratedUrl(
                 "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/block.svg",
             ),
+        },
+        {
+            name: "ALL-自动选择",
+            type: "url-test",
+            url: "http://www.gstatic.com/generate_204",
+            interval: 300,
+            tolerance: 50,
+            proxies: allProxies,
+            hidden: true,
         },
     ];
 
