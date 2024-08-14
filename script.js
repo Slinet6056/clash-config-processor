@@ -40,7 +40,7 @@ function overwriteGeneralConfig(params) {
         "allow-lan": false,
         mode: "rule",
         "log-level": "info",
-        ipv6: true,
+        ipv6: false,
         "external-controller": "0.0.0.0:9090",
         "keep-alive-interval": 30,
         "find-process-mode": "always",
