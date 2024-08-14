@@ -541,6 +541,8 @@ function overwriteProxyGroups(params) {
 
 function overwriteRules(params) {
     const rules = [
+        "DOMAIN-SUFFIX,smtp.fastmail.com,DIRECT",
+        "DOMAIN-SUFFIX,smtp.gmail.com,DIRECT",
         "RULE-SET,applications,DIRECT",
         "RULE-SET,whitelist,DIRECT",
         "RULE-SET,private,DIRECT",
