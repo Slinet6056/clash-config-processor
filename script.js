@@ -32,12 +32,8 @@ function overwriteGeneralConfig(params) {
     };
 
     const generalConfig = {
-        port: 7890,
-        "socks-port": 7891,
-        "mixed-port": 7892,
-        "redir-port": 7893,
-        "tproxy-port": 7894,
-        "allow-lan": false,
+        "mixed-port": 7890,
+        "allow-lan": true,
         mode: "rule",
         "log-level": "info",
         ipv6: false,
