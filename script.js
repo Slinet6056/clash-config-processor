@@ -19,24 +19,17 @@ function filterProxies(params) {
 }
 
 function overwriteGeneralConfig(params) {
-    // GitHub加速前缀
-    const githubPrefix = "https://gh.slinet.me/";
-
-    // GEO数据GitHub资源原始下载地址
-    const rawGeoxURLs = {
-        geoip: "https://github.com/MetaCubeX/meta-rules-dat/raw/release/geoip-lite.dat",
-        geosite:
+    const geoxURLs = {
+        geoip: getAcceleratedUrl(
+            "https://github.com/MetaCubeX/meta-rules-dat/raw/release/geoip-lite.dat",
+        ),
+        geosite: getAcceleratedUrl(
             "https://github.com/MetaCubeX/meta-rules-dat/raw/release/geosite.dat",
-        mmdb: "https://github.com/MetaCubeX/meta-rules-dat/raw/release/country-lite.mmdb",
+        ),
+        mmdb: getAcceleratedUrl(
+            "https://github.com/MetaCubeX/meta-rules-dat/raw/release/country-lite.mmdb",
+        ),
     };
-
-    // 生成带有加速前缀的GEO数据资源对象
-    const accelURLs = Object.fromEntries(
-        Object.entries(rawGeoxURLs).map(([key, githubUrl]) => [
-            key,
-            `${githubPrefix}${githubUrl}`,
-        ]),
-    );
 
     const generalConfig = {
         port: 7890,
@@ -50,7 +43,7 @@ function overwriteGeneralConfig(params) {
         ipv6: true,
         "external-controller": "0.0.0.0:9090",
         "keep-alive-interval": 30,
-        "find-process-mode": "strict",
+        "find-process-mode": "always",
         "unified-delay": true,
         "tcp-concurrent": true,
         "clash-for-android": {
@@ -78,7 +71,7 @@ function overwriteGeneralConfig(params) {
         "geodata-mode": true,
         "geo-auto-update": true,
         "geo-update-interval": 24,
-        "geox-url": accelURLs,
+        "geox-url": geoxURLs,
     };
 
     Object.keys(generalConfig).forEach((key) => {
@@ -175,27 +168,37 @@ function overwriteProxyGroups(params) {
         {
             name: "HK-手动选择",
             regex: /香港|HK|Hong|🇭🇰/,
-            icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/hk.svg",
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/flags/hk.svg",
+            ),
         },
         {
             name: "TW-手动选择",
             regex: /台湾|TW|Taiwan|Wan|🇨🇳|🇹🇼/,
-            icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/tw.svg",
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/flags/tw.svg",
+            ),
         },
         {
             name: "SG-手动选择",
             regex: /新加坡|狮城|SG|Singapore|🇸🇬/,
-            icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/sg.svg",
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/flags/sg.svg",
+            ),
         },
         {
             name: "JP-手动选择",
             regex: /日本|JP|Japan|🇯🇵/,
-            icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/jp.svg",
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/flags/jp.svg",
+            ),
         },
         {
             name: "US-手动选择",
             regex: /美国|US|United States|America|🇺🇸/,
-            icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/us.svg",
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/flags/us.svg",
+            ),
         },
     ];
 
@@ -214,49 +217,40 @@ function overwriteProxyGroups(params) {
             name: proxyName,
             type: "select",
             url: "http://www.gstatic.com/generate_204",
-            icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg",
-            proxies: [
-                "自动选择",
-                "手动选择",
-                "负载均衡",
-                // "负载均衡(轮询)",
-                "DIRECT",
-            ],
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/adjust.svg",
+            ),
+            proxies: ["自动选择", "手动选择", "负载均衡", "DIRECT"],
         },
         {
             name: "手动选择",
             type: "select",
-            icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/link.svg",
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/link.svg",
+            ),
             proxies: allProxies,
         },
         {
             name: "自动选择",
             type: "select",
-            icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/speed.svg",
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/speed.svg",
+            ),
             proxies: ["ALL-自动选择"],
         },
         {
             name: "负载均衡",
             type: "load-balance",
             url: "http://www.gstatic.com/generate_204",
-            icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/balance.svg",
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/balance.svg",
+            ),
             interval: 300,
             "max-failed-times": 3,
             strategy: "consistent-hashing",
             lazy: true,
             proxies: allProxies,
         },
-        // {
-        //     name: "负载均衡(轮询)",
-        //     type: "load-balance",
-        //     url: "http://www.gstatic.com/generate_204",
-        //     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/merry_go.svg",
-        //     interval: 300,
-        //     "max-failed-times": 3,
-        //     strategy: "round-robin",
-        //     lazy: true,
-        //     proxies: allProxies,
-        // },
         {
             name: "ALL-自动选择",
             type: "url-test",
@@ -265,6 +259,27 @@ function overwriteProxyGroups(params) {
             tolerance: 50,
             proxies: allProxies,
             hidden: true,
+        },
+        {
+            name: "Steam",
+            type: "select",
+            proxies: [
+                proxyName,
+                "HK-自动选择",
+                "TW-自动选择",
+                "SG-自动选择",
+                "JP-自动选择",
+                "US-自动选择",
+                "HK-手动选择",
+                "TW-手动选择",
+                "SG-手动选择",
+                "JP-手动选择",
+                "US-手动选择",
+                "DIRECT",
+            ],
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/steam.svg",
+            ),
         },
         {
             name: "Telegram",
@@ -282,11 +297,12 @@ function overwriteProxyGroups(params) {
                 "JP-手动选择",
                 "US-手动选择",
             ],
-            // "include-all": true,
-            icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/telegram.svg",
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/telegram.svg",
+            ),
         },
         {
-            name: "ChatGPT",
+            name: "OpenAI",
             type: "select",
             proxies: [
                 proxyName,
@@ -301,8 +317,9 @@ function overwriteProxyGroups(params) {
                 "JP-手动选择",
                 "US-手动选择",
             ],
-            // "include-all": true,
-            icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/chatgpt.svg",
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/chatgpt.svg",
+            ),
         },
         {
             name: "Claude",
@@ -320,20 +337,115 @@ function overwriteProxyGroups(params) {
                 "JP-手动选择",
                 "US-手动选择",
             ],
-            // "include-all": true,
-            icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/claude.svg",
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/claude.svg",
+            ),
+        },
+        {
+            name: "Google",
+            type: "select",
+            proxies: [
+                proxyName,
+                "HK-自动选择",
+                "TW-自动选择",
+                "SG-自动选择",
+                "JP-自动选择",
+                "US-自动选择",
+                "HK-手动选择",
+                "TW-手动选择",
+                "SG-手动选择",
+                "JP-手动选择",
+                "US-手动选择",
+            ],
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/google.svg",
+            ),
+        },
+        {
+            name: "Microsoft",
+            type: "select",
+            proxies: [
+                proxyName,
+                "HK-自动选择",
+                "TW-自动选择",
+                "SG-自动选择",
+                "JP-自动选择",
+                "US-自动选择",
+                "HK-手动选择",
+                "TW-手动选择",
+                "SG-手动选择",
+                "JP-手动选择",
+                "US-手动选择",
+                "DIRECT",
+            ],
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/microsoft.svg",
+            ),
+        },
+        {
+            name: "YouTube",
+            type: "select",
+            proxies: [
+                proxyName,
+                "HK-自动选择",
+                "TW-自动选择",
+                "SG-自动选择",
+                "JP-自动选择",
+                "US-自动选择",
+                "HK-手动选择",
+                "TW-手动选择",
+                "SG-手动选择",
+                "JP-手动选择",
+                "US-手动选择",
+            ],
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/youtube.svg",
+            ),
+        },
+        {
+            name: "巴哈姆特",
+            type: "select",
+            proxies: ["TW-自动选择", "TW-手动选择", proxyName],
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/bahamut.png",
+            ),
+        },
+        {
+            name: "哔哩哔哩",
+            type: "select",
+            proxies: [
+                "DIRECT",
+                proxyName,
+                "HK-自动选择",
+                "TW-自动选择",
+                "SG-自动选择",
+                "JP-自动选择",
+                "US-自动选择",
+                "HK-手动选择",
+                "TW-手动选择",
+                "SG-手动选择",
+                "JP-手动选择",
+                "US-手动选择",
+            ],
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/bilibili.svg",
+            ),
         },
         {
             name: "漏网之鱼",
             type: "select",
             proxies: [proxyName, "DIRECT"],
-            icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/fish.svg",
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/fish.svg",
+            ),
         },
         {
             name: "广告拦截",
             type: "select",
             proxies: ["REJECT", "DIRECT", proxyName],
-            icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/block.svg",
+            icon: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/icons/block.svg",
+            ),
         },
     ];
 
@@ -347,20 +459,23 @@ function overwriteProxyGroups(params) {
 function overwriteRules(params) {
     const rules = [
         "RULE-SET,applications,DIRECT",
-        "RULE-SET,anti-ad-white,DIRECT",
+        "RULE-SET,whitelist,DIRECT",
         "RULE-SET,private,DIRECT",
-        "RULE-SET,anti-ad,广告拦截",
-        "RULE-SET,icloud,DIRECT",
-        "RULE-SET,apple,DIRECT",
-        "RULE-SET,openai,ChatGPT",
+        "RULE-SET,reject,广告拦截",
+        "RULE-SET,steamcn,DIRECT",
+        "RULE-SET,steam,Steam",
+        "RULE-SET,telegram,Telegram",
+        "RULE-SET,openai,OpenAI",
         "RULE-SET,claude,Claude",
-        "RULE-SET,google," + proxyName,
-        "RULE-SET,greatfire," + proxyName,
+        "RULE-SET,google,Google",
+        "RULE-SET,microsoft,Microsoft",
+        "RULE-SET,youtube,YouTube",
+        "RULE-SET,bahamut,巴哈姆特",
+        "RULE-SET,bilibili,哔哩哔哩",
         "RULE-SET,proxy," + proxyName,
         "RULE-SET,direct,DIRECT",
         "RULE-SET,lancidr,DIRECT",
         "RULE-SET,cncidr,DIRECT",
-        "RULE-SET,telegramcidr,Telegram",
         "GEOIP,LAN,DIRECT,no-resolve",
         "GEOIP,CN,DIRECT,no-resolve",
         "MATCH,漏网之鱼",
@@ -369,55 +484,63 @@ function overwriteRules(params) {
         type: "http",
         interval: 10800,
     };
-    const acceleratePrefix = "https://gh.slinet.me/";
+
     const ruleProviders = {
-        "anti-ad": {
+        applications: {
             ...ruleProviderCommon,
-            behavior: "domain",
+            behavior: "classical",
             url: getAcceleratedUrl(
-                "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml",
+                "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt",
             ),
-            path: "./ruleset/anti-ad.yaml",
+            path: "./ruleset/applications.yaml",
         },
-        "anti-ad-white": {
+        whitelist: {
             ...ruleProviderCommon,
-            behavior: "domain",
+            behavior: "classical",
             url: getAcceleratedUrl(
-                "https://raw.githubusercontent.com/privacy-protection-tools/dead-horse/master/anti-ad-white-for-clash.yaml",
+                "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.yaml",
             ),
-            path: "./ruleset/anti-ad-white.yaml",
+            path: "./ruleset/whitelist.yaml",
         },
-        icloud: {
+        private: {
             ...ruleProviderCommon,
             behavior: "domain",
             url: getAcceleratedUrl(
-                "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/icloud.txt",
+                "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt",
             ),
-            path: "./ruleset/icloud.yaml",
+            path: "./ruleset/private.yaml",
         },
-        apple: {
+        reject: {
             ...ruleProviderCommon,
-            behavior: "domain",
+            behavior: "classical",
             url: getAcceleratedUrl(
-                "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/apple.txt",
+                "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Advertising/Advertising_Classical.yaml",
             ),
-            path: "./ruleset/apple.yaml",
+            path: "./ruleset/reject.yaml",
         },
-        google: {
+        steamcn: {
             ...ruleProviderCommon,
-            behavior: "domain",
+            behavior: "classical",
             url: getAcceleratedUrl(
-                "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/google.txt",
+                "https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/SteamCN/SteamCN.yaml",
             ),
-            path: "./ruleset/google.yaml",
+            path: "./ruleset/steamcn.yaml",
         },
-        proxy: {
+        steam: {
             ...ruleProviderCommon,
-            behavior: "domain",
+            behavior: "classical",
             url: getAcceleratedUrl(
-                "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt",
+                "https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/Steam/Steam.yaml",
             ),
-            path: "./ruleset/proxy.yaml",
+            path: "./ruleset/steam.yaml",
+        },
+        telegram: {
+            ...ruleProviderCommon,
+            behavior: "classical",
+            url: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml",
+            ),
+            path: "./ruleset/telegram.yaml",
         },
         openai: {
             ...ruleProviderCommon,
@@ -435,13 +558,53 @@ function overwriteRules(params) {
             ),
             path: "./ruleset/claude.yaml",
         },
-        telegramcidr: {
+        google: {
             ...ruleProviderCommon,
-            behavior: "ipcidr",
+            behavior: "classical",
             url: getAcceleratedUrl(
-                "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/telegramcidr.txt",
+                "https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/Google/Google.yaml",
             ),
-            path: "./ruleset/telegramcidr.yaml",
+            path: "./ruleset/google.yaml",
+        },
+        microsoft: {
+            ...ruleProviderCommon,
+            behavior: "classical",
+            url: getAcceleratedUrl(
+                "https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/Microsoft/Microsoft.yaml",
+            ),
+            path: "./ruleset/microsoft.yaml",
+        },
+        youtube: {
+            ...ruleProviderCommon,
+            behavior: "classical",
+            url: getAcceleratedUrl(
+                "https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/YouTube/YouTube.yaml",
+            ),
+            path: "./ruleset/youtube.yaml",
+        },
+        bahamut: {
+            ...ruleProviderCommon,
+            behavior: "classical",
+            url: getAcceleratedUrl(
+                "https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/Bahamut/Bahamut.yaml",
+            ),
+            path: "./ruleset/bahamut.yaml",
+        },
+        bilibili: {
+            ...ruleProviderCommon,
+            behavior: "classical",
+            url: getAcceleratedUrl(
+                "https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/BiliBili/BiliBili.yaml",
+            ),
+            path: "./ruleset/bilibili.yaml",
+        },
+        proxy: {
+            ...ruleProviderCommon,
+            behavior: "domain",
+            url: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt",
+            ),
+            path: "./ruleset/proxy.yaml",
         },
         direct: {
             ...ruleProviderCommon,
@@ -451,29 +614,13 @@ function overwriteRules(params) {
             ),
             path: "./ruleset/direct.yaml",
         },
-        private: {
-            ...ruleProviderCommon,
-            behavior: "domain",
-            url: getAcceleratedUrl(
-                "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt",
-            ),
-            path: "./ruleset/private.yaml",
-        },
-        greatfire: {
-            ...ruleProviderCommon,
-            behavior: "domain",
-            url: getAcceleratedUrl(
-                "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/greatfire.txt",
-            ),
-            path: "./ruleset/greatfire.yaml",
-        },
-        telegramcidr: {
+        lancidr: {
             ...ruleProviderCommon,
             behavior: "ipcidr",
             url: getAcceleratedUrl(
-                "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/telegramcidr.txt",
+                "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt",
             ),
-            path: "./ruleset/telegramcidr.yaml",
+            path: "./ruleset/lancidr.yaml",
         },
         cncidr: {
             ...ruleProviderCommon,
@@ -483,29 +630,9 @@ function overwriteRules(params) {
             ),
             path: "./ruleset/cncidr.yaml",
         },
-        lancidr: {
-            ...ruleProviderCommon,
-            behavior: "ipcidr",
-            url: getAcceleratedUrl(
-                "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt",
-            ),
-            path: "./ruleset/lancidr.yaml",
-        },
-        applications: {
-            ...ruleProviderCommon,
-            behavior: "classical",
-            url: getAcceleratedUrl(
-                "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt",
-            ),
-            path: "./ruleset/applications.yaml",
-        },
     };
     params["rule-providers"] = ruleProviders;
     params["rules"] = rules;
-
-    function getAcceleratedUrl(originalUrl) {
-        return `${acceleratePrefix}${originalUrl}`;
-    }
 }
 
 function getProxiesByRegex(params, regex) {
@@ -522,6 +649,11 @@ function getManualProxiesByRegex(params, regex) {
     return matchedProxies.length > 0
         ? matchedProxies
         : ["DIRECT", "手动选择", proxyName];
+}
+
+function getAcceleratedUrl(originalUrl) {
+    const acceleratePrefix = "https://gh.slinet.me/";
+    return `${acceleratePrefix}${originalUrl}`;
 }
 
 module.exports = { main };
