@@ -86,7 +86,7 @@ function overwriteDns(params) {
         "https://dns.alidns.com/dns-query#h3=true",
         "tls://dot.pub",
     ];
-    const trustDnsList = ["192.168.100.11", "https://doh.slinet.me"];
+    const trustDnsList = ["192.168.100.11", "113.31.125.67:20053"];
     // const notionDns = 'tls://dns.jerryw.cn'
     // const notionUrls = [
     //     'http-inputs-notion.splunkcloud.com',
@@ -208,7 +208,7 @@ function overwriteDns(params) {
             //[combinedUrls]: notionDns,
             "+.slinet.me, +.slinet.moe": [
                 "192.168.100.11",
-                "https://doh.slinet.me",
+                "113.31.125.67:20053",
             ],
             "geosite:private,cn": cnDnsList,
             "geosite:geolocation-!cn": trustDnsList,
