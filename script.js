@@ -596,7 +596,7 @@ function overwriteRules(params) {
             ...ruleProviderCommon,
             behavior: "classical",
             url: getAcceleratedUrl(
-                "https://raw.githubusercontent.com/Slinet6056/clash-config-processor/master/rules/reject.yaml",
+                "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite_Classical.yaml",
             ),
             path: "./ruleset/reject.yaml",
         },
