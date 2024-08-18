@@ -539,6 +539,7 @@ function overwriteRules(params) {
     const rules = [
         "DOMAIN-SUFFIX,smtp.fastmail.com,DIRECT",
         "DOMAIN-SUFFIX,smtp.gmail.com,DIRECT",
+        "DOMAIN-SUFFIX,m-team.io,DIRECT",
         "PROCESS-NAME,qbittorrent.exe,DIRECT",
         "RULE-SET,applications,DIRECT",
         "RULE-SET,whitelist,DIRECT",
