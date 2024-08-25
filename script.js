@@ -78,9 +78,11 @@ function overwriteGeneralConfig(params) {
 
 function overwriteDns(params) {
     const defaultDnsList = [
-        "tls://223.5.5.5",
-        "tls://1.12.12.12",
-        "tls://8.8.8.8",
+        // "tls://223.5.5.5",
+        // "tls://1.12.12.12",
+        // "tls://8.8.8.8",
+        "192.168.100.11",
+        "113.31.125.67:20053",
     ];
     const cnDnsList = [
         "https://dns.alidns.com/dns-query#h3=true",
@@ -203,6 +205,7 @@ function overwriteDns(params) {
         ],
         "default-nameserver": defaultDnsList,
         nameserver: trustDnsList,
+        "proxy-server-nameserver": trustDnsList,
 
         "nameserver-policy": {
             //[combinedUrls]: notionDns,
