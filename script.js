@@ -609,7 +609,7 @@ function overwriteRules(params) {
             ...ruleProviderCommon,
             behavior: "classical",
             url: getAcceleratedUrl(
-                "https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/SteamCN/SteamCN.yaml",
+                "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/SteamCN/SteamCN.yaml",
             ),
             path: "./ruleset/steamcn.yaml",
         },
@@ -617,7 +617,7 @@ function overwriteRules(params) {
             ...ruleProviderCommon,
             behavior: "classical",
             url: getAcceleratedUrl(
-                "https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/Steam/Steam.yaml",
+                "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam.yaml",
             ),
             path: "./ruleset/steam.yaml",
         },
@@ -649,7 +649,7 @@ function overwriteRules(params) {
             ...ruleProviderCommon,
             behavior: "classical",
             url: getAcceleratedUrl(
-                "https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/Google/Google.yaml",
+                "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.yaml",
             ),
             path: "./ruleset/google.yaml",
         },
@@ -657,7 +657,7 @@ function overwriteRules(params) {
             ...ruleProviderCommon,
             behavior: "classical",
             url: getAcceleratedUrl(
-                "https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/Microsoft/Microsoft.yaml",
+                "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.yaml",
             ),
             path: "./ruleset/microsoft.yaml",
         },
@@ -665,7 +665,7 @@ function overwriteRules(params) {
             ...ruleProviderCommon,
             behavior: "classical",
             url: getAcceleratedUrl(
-                "https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/YouTube/YouTube.yaml",
+                "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml",
             ),
             path: "./ruleset/youtube.yaml",
         },
@@ -673,7 +673,7 @@ function overwriteRules(params) {
             ...ruleProviderCommon,
             behavior: "classical",
             url: getAcceleratedUrl(
-                "https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/Bahamut/Bahamut.yaml",
+                "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Bahamut/Bahamut.yaml",
             ),
             path: "./ruleset/bahamut.yaml",
         },
@@ -681,7 +681,7 @@ function overwriteRules(params) {
             ...ruleProviderCommon,
             behavior: "classical",
             url: getAcceleratedUrl(
-                "https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/BiliBili/BiliBili.yaml",
+                "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili.yaml",
             ),
             path: "./ruleset/bilibili.yaml",
         },
