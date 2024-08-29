@@ -543,8 +543,8 @@ function overwriteRules(params) {
         "DOMAIN-SUFFIX,smtp.fastmail.com,DIRECT",
         "DOMAIN-SUFFIX,smtp.gmail.com,DIRECT",
         "DOMAIN-SUFFIX,m-team.io,DIRECT",
-        "PROCESS-NAME-REGEX,qbittorrent.*,DIRECT",
-        "PROCESS-NAME-REGEX,BaiduNetdisk.*,DIRECT",
+        "RULE-SET,tracker,DIRECT",
+        "RULE-SET,download,DIRECT",
         "RULE-SET,applications,DIRECT",
         "RULE-SET,whitelist,DIRECT",
         "RULE-SET,private,DIRECT",
@@ -573,6 +573,22 @@ function overwriteRules(params) {
     };
 
     const ruleProviders = {
+        tracker: {
+            ...ruleProviderCommon,
+            behavior: "classical",
+            url: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrivateTracker/PrivateTracker.yaml",
+            ),
+            path: "./ruleset/tracker.yaml",
+        },
+        download: {
+            ...ruleProviderCommon,
+            behavior: "classical",
+            url: getAcceleratedUrl(
+                "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Download/Download.yaml",
+            ),
+            path: "./ruleset/download.yaml",
+        },
         applications: {
             ...ruleProviderCommon,
             behavior: "classical",
