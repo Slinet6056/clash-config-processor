@@ -542,7 +542,14 @@ function overwriteRules(params) {
     const rules = [
         "DOMAIN-SUFFIX,smtp.fastmail.com,DIRECT",
         "DOMAIN-SUFFIX,smtp.gmail.com,DIRECT",
+
         "DOMAIN-SUFFIX,m-team.io,DIRECT",
+        "DOMAIN-SUFFIX,qingwapt.com,DIRECT",
+        "DOMAIN-SUFFIX,hdkyl.in,DIRECT",
+        "DOMAIN-SUFFIX,rousi.zip,DIRECT",
+        "DOMAIN-SUFFIX,skyeysnow.com,DIRECT",
+        "DOMAIN-SUFFIX,ptcafe.club,DIRECT",
+
         "RULE-SET,tracker,DIRECT",
         "RULE-SET,download,DIRECT",
         "RULE-SET,applications,DIRECT",
