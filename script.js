@@ -550,6 +550,8 @@ function overwriteRules(params) {
         "DOMAIN-SUFFIX,skyeysnow.com,DIRECT",
         "DOMAIN-SUFFIX,ptcafe.club,DIRECT",
 
+        "PROCESS-NAME,Resilio Sync.exe,DIRECT",
+
         "RULE-SET,tracker,DIRECT",
         "RULE-SET,download,DIRECT",
         "RULE-SET,applications,DIRECT",
