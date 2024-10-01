@@ -209,10 +209,8 @@ function overwriteDns(params) {
 
         "nameserver-policy": {
             //[combinedUrls]: notionDns,
-            "+.slinet.me, +.slinet.moe": [
-                "192.168.100.11",
-                "113.31.125.67:20053",
-            ],
+            "+.slinet.me": trustDnsList,
+            "+.slinet.moe": trustDnsList,
             "geosite:private,cn": cnDnsList,
             "geosite:geolocation-!cn": trustDnsList,
         },
